@@ -3,9 +3,11 @@ import { NextResponse } from "next/server";
 
 const statuses = ["received", "in progress", "ready", "collected"];
 
-export const GET = (req: NextApiRequest) => {
-  console.log("🚀 ~ GET ~ req:", req);
-  const { orderId } = req.query;
+export const GET = (
+  req: NextApiRequest,
+  { params }: { params: { orderId: string } }
+) => {
+  const { orderId } = params;
 
   // Simulate changing status over time
   const statusIndex = Math.floor(Math.random() * statuses.length);
