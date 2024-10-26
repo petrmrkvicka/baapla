@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
-import Image from "next/image";
 
 interface Product {
   id: number;
@@ -17,17 +16,15 @@ export default function Component() {
   const [orderStatus, setOrderStatus] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetch("/api/products")
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Failed to fetch products");
-        }
-        return res.json();
-      })
-      .then((data) => setProducts(data))
-      .catch((err) => setError(err.message));
-  }, []);
+  fetch("/api/products")
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Failed to fetch products");
+      }
+      return res.json();
+    })
+    .then((data) => setProducts(data))
+    .catch((err) => setError(err.message));
 
   const addToBasket = useCallback((productId: number) => {
     setBasket((prevBasket) => ({
@@ -107,12 +104,7 @@ export default function Component() {
             {categoryProducts.map((product) => (
               <div key={product.id} className="border p-4 rounded-lg">
                 <div className="relative w-full h-48 mb-4">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    layout="fill"
-                    objectFit="cover"
-                  />
+                  <img src={product.image} alt={product.name} />
                 </div>
                 <h3 className="text-xl font-semibold">{product.name}</h3>
                 <p className="text-gray-600">${product.price.toFixed(2)}</p>
