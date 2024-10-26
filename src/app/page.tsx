@@ -104,7 +104,11 @@ export default function Component() {
             {categoryProducts.map((product) => (
               <div key={product.id} className="border p-4 rounded-lg">
                 <div className="relative w-full h-48 mb-4">
-                  <img src={product.image} alt={product.name} />
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="h-full w-full object-cover rounded-lg"
+                  />
                 </div>
                 <h3 className="text-xl font-semibold">{product.name}</h3>
                 <p className="text-gray-600">${product.price.toFixed(2)}</p>
