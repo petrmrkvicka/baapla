@@ -1,11 +1,10 @@
+"use client";
 import { useHandleBasket } from "@/hooks/useBasket";
 import { useProducts } from "@/hooks/useProducts";
 import React from "react";
 import toast from "react-hot-toast";
 
-type Basket = { [key: number]: number };
-
-const Basket = () => {
+const BasketComponent = () => {
   const { basket } = useHandleBasket();
   const { products } = useProducts();
 
@@ -54,4 +53,4 @@ const Basket = () => {
   );
 };
 
-export default Basket;
+export default BasketComponent;
