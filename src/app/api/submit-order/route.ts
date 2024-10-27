@@ -1,10 +1,24 @@
 import { delay } from "@/helpers/delay";
-import { NextResponse } from "next/server";
+import { OrderType } from "@/types/order";
+import { NextRequest, NextResponse } from "next/server";
+import Crypto from "node:crypto";
 
-export const POST = async () => {
+// In-memory storage for orders
+const orders: OrderType[] = [];
+
+export const POST = async (req: NextRequest) => {
+  const submittedBasket = await req.json();
+  const orderId = Crypto.randomUUID();
+
+  orders.push({
+    basket: submittedBasket,
+    status: "submitted",
+    id: orderId,
+    submittedAt: new Date(),
+  });
+
   // Simulate server processing time
   await delay(1000);
 
-  const orderId = Math.floor(Math.random() * 1000000);
   return NextResponse.json({ orderId });
 };

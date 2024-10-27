@@ -24,7 +24,7 @@ export const BasketProvider = ({ children }: { children: React.ReactNode }) => {
 };
 
 const BasketComponent = () => {
-  const { basket } = useHandleBasket();
+  const { basket, clearBasket } = useHandleBasket();
   const { products } = useProducts();
 
   const submitOrder = async () => {
@@ -38,7 +38,9 @@ const BasketComponent = () => {
         throw new Error("Failed to submit order");
       }
       const data = await response.json();
-      toast.success(`Order submitted! Order ID: ${data.order}`);
+      // Clear the basket after successfully submitting the order
+      clearBasket();
+      toast.success(`Order submitted! Order ID: ${data.orderId}`);
     } catch (err) {
       console.error(err);
       toast.error("Failed to submit order. Please try again.");

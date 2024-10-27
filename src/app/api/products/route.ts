@@ -1,4 +1,3 @@
-import { NextApiRequest } from "next";
 import { NextResponse } from "next/server";
 
 export interface Product {
@@ -75,9 +74,7 @@ const products: Product[] = [
   },
 ];
 
-export const GET = async (req: NextApiRequest) => {
-  console.log("🚀 ~ req:", req);
-
+export const GET = async () => {
   return NextResponse.json(products, {
     status: 200,
     statusText: "OK",

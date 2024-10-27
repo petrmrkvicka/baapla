@@ -13,6 +13,7 @@ import { useContext } from "react";
 export const useHandleBasket = (): {
   basket: Basket;
   addToBasket: (productId: number) => void;
+  clearBasket: () => void;
 } => {
   const { basket, setBasket } = useContext(BasketContext);
 
@@ -27,5 +28,13 @@ export const useHandleBasket = (): {
     }));
   };
 
-  return { basket, addToBasket };
+  /**
+   * Clears the basket by setting it to an empty object.
+   * @returns {void}
+   */
+  const clearBasket = (): void => {
+    setBasket({});
+  };
+
+  return { basket, addToBasket, clearBasket };
 };
