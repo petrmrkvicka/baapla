@@ -1,5 +1,6 @@
 "use client";
 import Basket, { BasketProvider } from "@/components/Basket";
+import OrderStatuses from "@/components/OrderStatuses";
 import { useHandleBasket } from "@/hooks/useBasket";
 import { useProducts } from "@/hooks/useProducts";
 
@@ -62,7 +63,7 @@ export default function Component() {
         </div>
 
         <div className="col-span-2">
-          {/* <OrderStatuses /> */}
+          <OrderStatuses />
           <Basket />
         </div>
       </div>

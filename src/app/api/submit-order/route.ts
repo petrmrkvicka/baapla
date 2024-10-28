@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Crypto from "node:crypto";
 
 // In-memory storage for orders
-const orders: OrderType[] = [];
+export const orders: OrderType[] = [];
 
 export const POST = async (req: NextRequest) => {
   const submittedBasket = await req.json();
