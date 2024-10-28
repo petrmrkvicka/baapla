@@ -12,11 +12,11 @@ export const GET = async () => {
     const timeDiff = currentTime - submittedTime;
     const timeDiffInSeconds = timeDiff / 1000;
 
-    if (timeDiffInSeconds < 5) {
+    if (timeDiffInSeconds < 10) {
       return { ...o, status: "submitted" };
-    } else if (timeDiffInSeconds < 10) {
+    } else if (timeDiffInSeconds < 20) {
       return { ...o, status: "preparing" };
-    } else if (timeDiffInSeconds < 15) {
+    } else if (timeDiffInSeconds < 30) {
       return { ...o, status: "collected" };
     } else {
       return { ...o, status: "delivered" };

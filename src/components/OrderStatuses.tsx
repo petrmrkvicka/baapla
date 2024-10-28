@@ -68,6 +68,7 @@ const OrderStatusBadge = ({ status }: { status: OrderType["status"] }) => {
     submitted: "blue",
     preparing: "yellow",
     collected: "green",
+    delivered: "red",
   };
   return (
     <p className={`text-${statusColorMap[status]}-600`}>Status: {status}</p>

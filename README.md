@@ -36,10 +36,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ## Things that could be improved?
 
 1. Look at how the products are being loaded... oooops :)
-   -1. How can we further optimize these calls?
+   - How can we further optimize these calls?
 1. Image optimization?
 1. Are you able to add items to the basket?
-1. Load submitted orders and their statuses
-   -1. Bonus: load the basket
 1. Why will the statuses never render color?
 1. Do you see any racing-conditions
+1. Bonus: hook a DB of your own choice ;)
