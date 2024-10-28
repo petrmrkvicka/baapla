@@ -1,10 +1,7 @@
+import { orders } from "@/db/orders";
 import { delay } from "@/helpers/delay";
-import { OrderType } from "@/types/order";
 import { NextRequest, NextResponse } from "next/server";
 import Crypto from "node:crypto";
-
-// In-memory storage for orders
-export const orders: OrderType[] = [];
 
 export const POST = async (req: NextRequest) => {
   const submittedBasket = await req.json();

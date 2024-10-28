@@ -1,7 +1,7 @@
+import { orders } from "@/db/orders";
 import { delay } from "@/helpers/delay";
 import { getRandomNumber } from "@/helpers/randomNumber";
 import { NextResponse } from "next/server";
-import { orders } from "../submit-order/route";
 
 export const GET = async () => {
   // Update status
