@@ -1,10 +1,11 @@
 "use client";
-import { OrderType } from "@/types/order";
+import { useProducts } from "@/hooks/useProducts";
+import { OrderType, OrderTypeApi } from "@/types/order";
 import React, { useEffect, useRef } from "react";
 import toast from "react-hot-toast";
 
 const OrderStatuses = () => {
-  const [orders, setOrders] = React.useState<OrderType[]>([]);
+  const [orders, setOrders] = React.useState<OrderTypeApi[]>([]);
   const statusVersion = useRef(0);
 
   useEffect(() => {
@@ -52,10 +53,21 @@ const OrderStatuses = () => {
 
 export default OrderStatuses;
 
-const OrderComponent = ({ order }: { order: OrderType }) => {
+const OrderComponent = ({ order }: { order: OrderTypeApi }) => {
+  const { products } = useProducts();
+
   return (
     <div className="border p-4 rounded-lg">
       <h3 className="text-xl font-semibold">{order.id}</h3>
+      <p>{order.submittedAt}</p>
+      <ul>
+        {Object.entries(order.basket || {}).map(([productId, quantity]) => (
+          <li key={productId}>
+            {products.find((product) => product.id === Number(productId))?.name}{" "}
+            x {quantity}
+          </li>
+        ))}
+      </ul>
       <OrderStatusBadge status={order.status} />
     </div>
   );

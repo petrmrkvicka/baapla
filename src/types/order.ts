@@ -6,3 +6,7 @@ export type OrderType = {
   id: string;
   submittedAt: Date;
 };
+
+export type OrderTypeApi = Omit<OrderType, "submittedAt"> & {
+  submittedAt: string;
+};

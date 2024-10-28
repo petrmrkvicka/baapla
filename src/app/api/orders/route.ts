@@ -5,23 +5,30 @@ import { orders } from "../submit-order/route";
 
 export const GET = async () => {
   // Update status
-  const localOrders = orders.map((o) => {
-    const submittedTime = o.submittedAt.getTime();
-    const currentTime = new Date().getTime();
+  const localOrders = orders
+    .sort((a, b) => b.submittedAt.getTime() - a.submittedAt.getTime())
+    .map((o) => {
+      const submittedTime = o.submittedAt.getTime();
+      const currentTime = new Date().getTime();
 
-    const timeDiff = currentTime - submittedTime;
-    const timeDiffInSeconds = timeDiff / 1000;
+      const updatedOrder = {
+        ...o,
+        submittedAt: o.submittedAt.toLocaleString(),
+      };
 
-    if (timeDiffInSeconds < 10) {
-      return { ...o, status: "submitted" };
-    } else if (timeDiffInSeconds < 20) {
-      return { ...o, status: "preparing" };
-    } else if (timeDiffInSeconds < 30) {
-      return { ...o, status: "collected" };
-    } else {
-      return { ...o, status: "delivered" };
-    }
-  });
+      const timeDiff = currentTime - submittedTime;
+      const timeDiffInSeconds = timeDiff / 1000;
+
+      if (timeDiffInSeconds < 10) {
+        return { ...updatedOrder, status: "submitted" };
+      } else if (timeDiffInSeconds < 20) {
+        return { ...updatedOrder, status: "preparing" };
+      } else if (timeDiffInSeconds < 30) {
+        return { ...updatedOrder, status: "collected" };
+      } else {
+        return { ...updatedOrder, status: "delivered" };
+      }
+    });
 
   // Simulate server processing time
   await delay(getRandomNumber(0, 8000));
